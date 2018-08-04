@@ -7,6 +7,7 @@ import { BrowserRouter, HashRouter, Router, Route, Link, Switch, Redirect } from
 import 'bootstrap';
 import '../public/scss/custom.scss';
 
+// console.log('process: ', process);
 
 import BoardListPage from './pages/BoardListPage'
 import BoardViewPage from './pages/BoardViewPage'
@@ -18,7 +19,8 @@ import rootReducer from './reducers';
 
 const store = createStore(rootReducer);
 
-console.log('module.hot', module.hot);
+// console.log('module: ', module);
+// console.log('module.hot', module.hot);
 
 if (module.hot) {
   module.hot.accept('./reducers', () =>
