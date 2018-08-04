@@ -4,6 +4,8 @@ import axios from  'axios'
 
 import { GET_LIST } from '../actions/listAction'
 
+import ListRow from './ListRow'
+
 // const mapStateToProps = (state) => ({
 //   borderListData: state.borderList,
 //   list: state.borderList.list,
@@ -89,22 +91,6 @@ class BoardListRow extends Component {
         }
       </Fragment>
     )  
-  }
-}
-
-class ListRow extends Component {
-  render(){
-    return (
-      <Fragment>
-        <tr>
-          <th scope="row" className="text-center">{ this.props.id }</th>
-          <td><a href="#">{ this.props.title }</a></td>
-          <td className="text-center">{ this.props.name }</td>
-          <td className="text-center">{ this.props.date }</td>
-          <td className="text-center">{ this.props.hits }</td>
-        </tr>
-      </Fragment>
-    )
   }
 }
 
