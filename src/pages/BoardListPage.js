@@ -1,9 +1,11 @@
 import React, { Fragment, Component } from 'react';
+import { Link } from 'react-router-dom'
 
 import BoardListRow from '../components/BoardListRow'
 
 export default class BoardListPage extends Component {
   render() {
+    console.log('this.props.history: ', this.props.history);
     return (
       <Fragment>
         <div id="board_list">
@@ -21,12 +23,13 @@ export default class BoardListPage extends Component {
               <BoardListRow />
             </tbody>
           </table>
-
-          <div id="pagination">
+        </div>
+        <div id="board_bottom" className="clearfix">
+          <div id="pagination" className="float-right">
             {/* 1) <<, >>는 사용 불가시 li.disabled 추가
             2) [1], [2], [3]의 선택된 페이지는 li.active 추가 */}
             <nav aria-label="board pagination">
-              <ul className="pagination float-right">
+              <ul className="pagination mb-0">
                 <li className="page-item">
                   <a className="page-link" href="#" aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
@@ -44,6 +47,11 @@ export default class BoardListPage extends Component {
                 </li>
               </ul>
             </nav>
+          </div>
+
+          <div className="btn-group float-left" role="group" aria-label="First group">
+            {/* <button type="button" className="btn btn-outline-dark btn-sm">글쓰기</button> */}
+            <Link to="/board_create" className="btn btn-outline-dark btn-sm">글쓰기</Link>
           </div>
         </div>
       </Fragment>
