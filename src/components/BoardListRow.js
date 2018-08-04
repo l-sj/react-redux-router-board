@@ -2,7 +2,7 @@ import React, { Fragment, Component } from 'react'
 import { connect } from 'react-redux'
 import axios from  'axios'
 
-import { GET_LIST } from '../actions/listAction'
+import { getListDispatch, GET_LIST } from '../actions/listAction'
 
 import ListRow from './ListRow'
 

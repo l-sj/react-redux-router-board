@@ -1,9 +1,11 @@
 export const GET_LIST = 'LIST_GET';
 export const LIST_DELETE = 'LIST_DELETE';
 
-// export const actionGetList = ( inputValue ) => ({
-//   type: GET_LIST,
-// });
+// 액션 객체를 만들어주는 액션 생성 함수. 
+// 액션 함수를 만드는 이유: 그때 그때 액션을 만들때마다 직접 {이러한 객체} 형식으로 객체를 일일히 생성하는 것이 번거롭기 때문에 이름 함수화한 것. 특히 액션에 다양한 파라미터가 필요해질때 유용.
+export const getListDispatch = ( ) => ({
+  type: GET_LIST,
+});
 
 /*
 HTTP Methods - GET, POST, PUT, PATCH, DELETE
