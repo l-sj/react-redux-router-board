@@ -32,12 +32,20 @@ ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <Switch>
-        <App>
+        {/* <App>
           <Route exact path='/' component={ BoardListPage } />
           <Route path='/board_view' component={ BoardViewPage } />
           <Route path='/board_create' component={ BoardCreatePage} />
           <Route path='/board_update' component={ BoardUpdatePage } />
-        </App>
+        </App> */}
+        <Route exact path="/" component={ BoardListPage } />
+        <Route path="/board_view" component={ BoardViewPage } />
+        <Route path="/board_create" render={(props) => (
+          <BoardCreatePage {...props} />
+        )} />
+        <Route path="/board_update" render={(props) => (
+          <BoardUpdatePage {...props} />
+        )} />
       </Switch>
     </BrowserRouter>
   </Provider>,
