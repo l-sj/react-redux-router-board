@@ -15,8 +15,8 @@ const mapStateToProps = (state) => (
     console.log('mapStateToProps')
 
     return {
-      borderListData: state.borderList,
-      list: state.borderList.list,
+      borderListData: state.listReducer,
+      list: state.listReducer.list,
     }
   }
 )
@@ -45,12 +45,13 @@ const mapStateToProps = (state) => (
 const mapDispatchToProps = (dispatch) => (
   (dispatch) => {
     console.log('mapDispatchToProps')
+    console.log('dispatch : ', dispatch);
 
     return {
       getListDispatch: () => {
         axios.get('https://jsonplaceholder.typicode.com/posts')
           .then(function(result){
-            console.log('SUCCESS ')
+            console.log('LIST SUCCESS ')
             if(result.status === 200 ) {
               // 데이터 가져오는게 성공했다면,  액션의 타입은 GET_LIST, 데이터가 담긴 배열을 넘겨준다.
               dispatch({
@@ -62,7 +63,7 @@ const mapDispatchToProps = (dispatch) => (
             }
           })
           .catch( function(response){
-            console.log('ERROR: ', response.data)
+            console.log('LIST ERROR: ', response.data)
           })
       }
     }
@@ -71,7 +72,7 @@ const mapDispatchToProps = (dispatch) => (
 
 class BoardListRow extends Component {
   componentDidMount() {
-    console.log('componentDidMount');
+    console.log('componentDidMount: ', this);
     // 컴포넌트 마운트가 끝났을때, 게시판 데이터를 가져오는 함수 실행.
     this.props.getListDispatch();
   }
@@ -79,7 +80,8 @@ class BoardListRow extends Component {
   render(){
     // console.log('borderListData: ', this.props.borderListData );
     // console.log('list: ', this.props.list );
-    console.log('render');
+    // console.log('render', window.history);
+    // console.log('render', window.location);
     return(
       <Fragment>
         {

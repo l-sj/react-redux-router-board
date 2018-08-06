@@ -7,7 +7,7 @@ const INITIAL_STATE = {
 export default function(state = INITIAL_STATE, action){
   switch(action.type){
     case GET_LIST:
-      console.log('listReducer')
+      console.log('List listReducer')
       return {...state, list: action.payload.response}
     default:
       return state
