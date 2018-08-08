@@ -17,6 +17,9 @@ export default class ListTable extends Component {
         </thead>
         <tbody>
           <TableRow />
+          <tr>
+            <td scope="row" colSpan="5" className="text-center">내용이 없습니다.</td>
+          </tr>
         </tbody>
       </Fragment>
     )
