@@ -1,28 +1,15 @@
 import React, { Fragment, Component } from 'react';
 import { Link } from 'react-router-dom'
 
+import ViewTable from '../components/ViewTable'
+
 export default class BoardViewPage extends Component {
   render() {
     return (
       <Fragment>
         <div id="board_content">
           <table className="table table-bordered">
-            <tbody>
-              <tr>
-                <th scope="row">작성자</th>
-                <td>작성자 value</td>
-                <th>조회수</th>
-                <td>조회수 value</td>
-              </tr>
-              <tr>
-                <th scope="row">제목</th>
-                <td colSpan="3">제목 value</td>
-              </tr>
-              <tr>
-                <th scope="row">내용</th>
-                <td colSpan="3">내용 value</td>
-              </tr>
-            </tbody>
+            <ViewTable />
           </table>
         </div>
         <div id="board_bottom" className="clearfix">
