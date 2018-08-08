@@ -1,0 +1,1 @@
+export const LIST_PATCH = 'LIST_PATCH';

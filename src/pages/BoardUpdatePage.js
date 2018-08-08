@@ -11,6 +11,7 @@ export default class BoardCreatePage extends Component {
   }
 
   render() {
+    console.log('this.props.history: ', this.props.history);
     return (
       <Fragment>
         <div id="board_content">

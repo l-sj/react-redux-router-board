@@ -1,8 +1,6 @@
 import React, { Fragment, Component } from 'react';
 import { Link } from 'react-router-dom'
 
-import BoardListRow from '../components/BoardListRow'
-
 export default class BoardListPage extends Component {
   render() {
     console.log('this.props.history: ', this.props.history);
@@ -20,7 +18,15 @@ export default class BoardListPage extends Component {
               </tr>
             </thead>
             <tbody>
-              <BoardListRow />
+              <tr>
+                <th scope="row" className="text-center">1</th>
+                <td>
+                  <a href="#">제목 value</a>
+                </td>
+                <td className="text-center">작성자 value</td>
+                <td className="text-center">작성일 value</td>
+                <td className="text-center">조회수 value</td>
+              </tr>
             </tbody>
           </table>
         </div>
