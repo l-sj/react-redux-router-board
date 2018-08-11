@@ -10,8 +10,16 @@ export default class ViewTable extends Component {
   }
 
   render () {
+    if(this.props.loading){
+      return (
+        <LoaderSpinners />
+      )
+    }
     return (
       <Fragment>
+        {/* {
+          (this.props.loading)? <LoaderSpinners /> : ''
+        } */}
         <table className="table table-bordered">
           <tbody>
             <tr>
@@ -30,9 +38,6 @@ export default class ViewTable extends Component {
             </tr>
           </tbody>
         </table>
-        {
-          (this.props.loading)? <LoaderSpinners /> : ''
-        }
       </Fragment>
     )
   }

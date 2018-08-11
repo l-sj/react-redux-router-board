@@ -10,6 +10,11 @@ export default class ListTable extends Component {
   }
 
   render () {
+    if(this.props.loading){
+      return (
+        <LoaderSpinners />
+      )
+    }
     return (
       <Fragment>
         <table className="table">
@@ -51,9 +56,9 @@ export default class ListTable extends Component {
             }
           </tbody>
         </table>
-        {
+        {/* {
           (this.props.loading)? <LoaderSpinners /> : ''
-        }
+        } */}
       </Fragment>
     )
   }
