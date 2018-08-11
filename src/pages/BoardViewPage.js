@@ -11,16 +11,15 @@ export default class BoardViewPage extends Component {
   }
 
   render() {
+    console.log('ViewPage: ', this );
     // console.log('ViewPage: ', this.props );
     // console.log('ViewPage this.props.match.params.id: ', this.props.match.params.id );
     // console.log('ViewPage this.context.router.route.match.params.id: ', this.context.router.route.match.params.id );
     return (
       <Fragment>
         <div id="board_content">
-          <table className="table table-bordered">
-            {/* <ViewTable /> */}
-            <ViewTableContainer id={ this.props.match.params.id } />
-          </table>
+          {/* <ViewTable /> */}
+          <ViewTableContainer id={ this.props.match.params.id } />
         </div>
         <div id="board_bottom" className="clearfix">
           <div className="float-right">

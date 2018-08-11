@@ -18,36 +18,18 @@ import {
   RotateLoader, // 원 세개가 있고, 가운데 원은 가만히 있고 양옆의 점 두개가 회전
   ScaleLoader, // 라인 여섯개가 세로로 세워져 있고, 순서에 맞게 커졌다 작아졌다
   SyncLoader, // 원 세개가 순서에 맞게 위로 바운스
-} from 'react-spinners'
-import { connect } from 'react-redux';
+} from 'react-spinners';
 
-const mapStateToProps = (state) => ({
-  loading: state.listData.loading
-})
-const mapDispatchToProps = (dispatch) => ({
-
-})
-
-class LoaderSpinners extends Component {
-  
+export default class LoaderSpinners extends Component {
   render () {
-    console.log( 'LoaderSpinners: ', this.props );
-    if( this.props.loading ){
-      return (
-        <Fragment>
-          <div className="wrap-loader-spinner">
-            <div className="inner-loader-spinner">
-              <SyncLoader className="component-loader-spinner" />
-            </div>
+    return (
+      <Fragment>
+        <div className="wrap-loader-spinner">
+          <div className="inner-loader-spinner">
+            <SyncLoader className="component-loader-spinner" />
           </div>
-        </Fragment>
-      )
-    } else {
-      return (
-        <Fragment></Fragment>
-      )
-    }
+        </div>
+      </Fragment>
+    )
   }
 };
-
-export default connect(mapStateToProps, mapDispatchToProps)(LoaderSpinners);

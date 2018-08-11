@@ -2,7 +2,6 @@ import React, { Fragment, Component } from 'react'
 
 export default class TableRowNoData extends Component {
   componentDidMount(){
-    console.log('TableRowNoData: ', this.props);
   }
 
   render () {

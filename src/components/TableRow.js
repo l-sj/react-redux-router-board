@@ -7,7 +7,6 @@ export default class TableRow extends Component {
   }
 
   componentDidMount(){
-    console.log('TableRow: ', this.props);
   }
 
   linkToViewPage(id){
@@ -15,8 +14,6 @@ export default class TableRow extends Component {
   }
 
   render () {
-    console.log('TableRow Render: ', this.props);
-    console.log('context: ', this);
     return (
       <Fragment>
         <tr>

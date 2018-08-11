@@ -2,7 +2,7 @@ import React, { Fragment, Component } from 'react';
 import { Router, Route, Link } from 'react-router-dom';
 
 import Pagination from '../components/Pagination'
-import LoaderSpinners from '../components/LoaderSpinners'
+
 // import ListTable from '../components/ListTable'
 import ListTableContainer from '../containers/ListTableContainer'
 
@@ -22,10 +22,8 @@ export default class BoardListPage extends Component {
     return (
       <Fragment>
         <div id="board_list">
-          <table className="table">
-            {/* <ListTable /> */}
-            <ListTableContainer />
-          </table>
+          {/* <ListTable /> */}
+          <ListTableContainer />
         </div>
         <div id="board_bottom" className="clearfix">
           <Pagination />
@@ -35,7 +33,6 @@ export default class BoardListPage extends Component {
             <Link to="/board_create" className="btn btn-outline-dark btn-sm">글쓰기</Link>
           </div>
         </div>
-        <LoaderSpinners />
       </Fragment>
     )
   }
