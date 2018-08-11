@@ -38,12 +38,12 @@ const mapDispatchToProps = (dispatch) => {
         }
       })
       .catch( (response) => {
-        console.log( "Error" );
+        console.log( "error" );
         console.log( response );
-        // dispatch({
-        //   type: FETCH_SUCCESS,
-        //   payload: result.data.response.list,
-        // });
+        dispatch({
+          type: FETCH_FAILED,
+          payload: response,
+        });
       })
     }
   } 
