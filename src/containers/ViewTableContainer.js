@@ -5,7 +5,7 @@ import axios from 'axios'
 const SERVER_HOST = '127.0.0.1'
 const SERVER_PORT = '8800'
 
-import { FETCH_VIEW, FETCH_VIEW_SUCCESS, FETCH_VIEW_ERROR } from '../actions/viewAction'
+import { FETCH_VIEW, FETCH_VIEW_SUCCESS, FETCH_VIEW_FAILED } from '../actions/viewAction'
 import ViewTable from '../components/ViewTable'
 
 const mapStateToProps = (state) => {
@@ -40,9 +40,9 @@ const mapDispatchToProps = (dispatch) => {
         }
       })
       .catch( (response) => {
-        console.log( "error" );
+        console.log( "FAILED" );
         dispatch({
-          type: FETCH_VIEW_ERROR,
+          type: FETCH_VIEW_FAILED,
           payload: response
         });
       })

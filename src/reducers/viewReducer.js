@@ -1,4 +1,4 @@
-import { FETCH_VIEW, FETCH_VIEW_SUCCESS, FETCH_VIEW_ERROR } from '../actions/viewAction'
+import { FETCH_VIEW, FETCH_VIEW_SUCCESS, FETCH_VIEW_FAILED } from '../actions/viewAction'
 
 const INITIAL_STATE = {
   id: null,
@@ -21,7 +21,7 @@ export default function (state = INITIAL_STATE, action) {
       console.log('list fetch 성공');
       return { ...state, loading: false , ...action.payload }
 
-    case FETCH_VIEW_ERROR:
+    case FETCH_VIEW_FAILED:
       console.log('list fetch 실패', ...action.payload);
       return { ...state, loading: false, error: true }
 
