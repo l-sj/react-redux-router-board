@@ -52,11 +52,11 @@ const mapDispatchToProps = (dispatch) => {
       })
     },
     viewCountUpdate: (id) => {
-      const storageID = localStorage.getItem('viewItem_ID');
-      console.log( 'storageID != id: ', storageID , id );
+      const viewItem_ID = 'viewItem_ID'
+      const storageID = localStorage.getItem(viewItem_ID);
 
       if( storageID != id ){
-        localStorage.setItem('viewItem_ID', id);
+        localStorage.setItem(viewItem_ID, id);
         axios.put(`http://${SERVER_HOST}:${SERVER_PORT}/api/board/${ id }/count`, {crossDomain: true, responseType: 'json', headers: {'Content-Type': 'application/json'}}).
         then(
           (result) => {

@@ -1,4 +1,5 @@
 import React, { Fragment, Component } from 'react';
+import { Link } from 'react-router-dom'
 import PropTypes from 'proptypes'
 
 // import ViewTable from '../components/ViewTable'
@@ -10,9 +11,9 @@ export default class BoardViewPage extends Component {
   }
 
   render() {
-    console.log('ViewPage: ', this.props );
-    console.log('ViewPage this.props.match.params.id: ', this.props.match.params.id );
-    console.log('ViewPage this.context.router.route.match.params.id: ', this.context.router.route.match.params.id );
+    // console.log('ViewPage: ', this.props );
+    // console.log('ViewPage this.props.match.params.id: ', this.props.match.params.id );
+    // console.log('ViewPage this.context.router.route.match.params.id: ', this.context.router.route.match.params.id );
     return (
       <Fragment>
         <div id="board_content">
@@ -25,7 +26,8 @@ export default class BoardViewPage extends Component {
           <div className="float-right">
             <div className="btn-group mr-2" role="group" aria-label="First group">
               {/* <button type="button" className="btn btn-outline-dark btn-sm">목록</button> */}
-              <button type="button" className="btn btn-outline-dark btn-sm" onClick={ this.context.router.history.goBack }>목록</button>
+              {/* <button type="button" className="btn btn-outline-dark btn-sm" onClick={ this.context.router.history.goBack }>목록</button> */}
+              <Link to="/" className="btn btn-outline-dark btn-sm">목록</Link>
             </div>
             <div className="btn-group" role="group" aria-label="Second group">
               <button type="button" className="btn btn-outline-dark btn-sm">수정</button>

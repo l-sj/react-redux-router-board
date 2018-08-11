@@ -30,7 +30,7 @@ export default function (state = INITIAL_STATE, action) {
 
     case UPDATE_COUNT_SUCCESS:
       console.log('count update 성공-----------: ', state.view_count );
-    return { ...state, view_count: state.view_count + 1 }
+    return { ...state }
 
     case UPDATE_COUNT_FAILED:
     console.log('count update 실패', state.view_count );

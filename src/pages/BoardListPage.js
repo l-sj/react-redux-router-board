@@ -13,11 +13,12 @@ export default class BoardListPage extends Component {
   }
 
   componentDidMount(){
-    console.log( 'BoardListPage props :', this.props );
+    // 데이터 추가 전까지 임시
+    const viewItem_ID = 'viewItem_ID'
+    localStorage.setItem(viewItem_ID, 1)
   }
 
   render() {
-    console.log( 'BoardListPage props render :', this.props );
     return (
       <Fragment>
         <div id="board_list">
