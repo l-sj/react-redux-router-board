@@ -8,8 +8,8 @@ import updateReducer from './updateReducer'
 const rootReducer = combineReducers({
   router,
   listData: listReducer,
-  // createData: createReducer,
-  // viewData: viewReducer,
+  createData: createReducer,
+  viewData: viewReducer,
   // updateData: updateReducer,
 });
 
