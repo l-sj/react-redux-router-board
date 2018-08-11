@@ -9,26 +9,10 @@ export default class ListTable extends Component {
     console.log('ListTable DidMount props: ', this.props);
   }
 
-  // componentDidUpdate(prevProps, prevState, snapshot){
-  //   console.log('ListTable DidUpdate prevProps: ', prevProps);
-  //   console.log('ListTable DidUpdate prevState: ', prevState);
-  //   console.log('ListTable DidUpdate snapshot: ', snapshot);
-  //   console.log('ListTable DidUpdate props: ', this.props);
-  // }
-
   render () {
     console.log('ListTable render: ', this.props);
     console.log('ListTable render: ', this.props.list.length);
-  // var TTT = (this.props.list.length > 0)? 'tttttt' : 'HHHHH'
-      // if ( this.props.list.length > 0) {
-      //   return (
-      //     <TableRow />
-      //   )
-      // } else {
-      //   return (
-      //     <TableRowNoData />
-      //   )
-      // }
+
     return (
       <Fragment>
         <thead className="thead-dark">
@@ -50,6 +34,17 @@ export default class ListTable extends Component {
           {
             (function(self){
               if ( self.props.list.length > 0) {
+                /*
+                self.props.list.map( (row, index) => {
+                  console.log('row : ', row);
+                  return (
+                    <tr>
+                      <td colSpan="5">map list</td>
+                    </tr>
+                  )
+                })
+                */
+
                 return (
                   <TableRow { ...self.props } />
                 )

@@ -11,7 +11,8 @@ import ListTable from '../components/ListTable'
 const mapStateToProps = (state) => {
   // console.log( state );
   return {
-    list: state.listData.list
+    list: state.listData.list,
+    loading: state.listData.loading,
   }
 }
 const mapDispatchToProps = (dispatch) => {
