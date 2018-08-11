@@ -30,7 +30,6 @@ const mapDispatchToProps = (dispatch) => {
         
         if( result.status === 200 ){
           console.log( result.data.response.list);
-          console.log('ddddddd');
           dispatch({
             type: FETCH_SUCCESS,
             payload: result.data.response.list,
