@@ -1,40 +1,29 @@
 import React, { Fragment, Component } from 'react';
 import { Link } from 'react-router-dom'
 
-import UpdateTable from '../components/UpdateTable'
+// import UpdateTable from '../components/UpdateTable'
+import UpdateTableContainer from '../containers/UpdateTableContainer'
 
-export default class BoardCreatePage extends Component {
-  constructor(){
-    super();
+export default class BoardUpdatePage extends Component {
+  // prevGoBack() {
+  //   this.props.history.goBack();
+  // }
+
+  componentDidMount(){
+    // console.log('this.props.location: ', this.props.location);
   }
 
-  prevGoBack() {
-    this.props.history.goBack();
-  }
+  // modifyFunc(){
+  //   console.log( 'BoardUpdatePage : ', localStorage.getItem('tempTitle') );
+  //   localStorage.removeItem('tempTitle');
+  // }
 
   render() {
-    console.log('this.props.history: ', this.props.history);
+    // console.log('this.props.history: ', this.props.history);
+   
     return (
       <Fragment>
-        <div id="board_content">
-          <form>
-            <fieldset>
-              <legend>글수정</legend>
-              <UpdateTable />
-            </fieldset>
-          </form>
-        </div>
-        <div id="board_bottom" className="clearfix">
-          <div className="float-right">
-            <div className="btn-group mr-2" role="group" aria-label="First group">
-              <Link to="/" className="btn btn-outline-dark btn-sm">목록</Link>
-            </div>
-            <div className="btn-group" role="group" aria-label="Second group">
-              <button type="button" className="btn btn-outline-dark btn-sm" onClick={ this.prevGoBack.bind(this) }>취소</button>
-              <button type="submit" className="btn btn-outline-primary btn-sm ml-1">수정</button>
-            </div>
-          </div>
-        </div>
+        <UpdateTableContainer pageProps={ this.props } />
       </Fragment>
     )
   }

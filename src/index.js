@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import { BrowserRouter, HashRouter, Router, Route, Link, Switch, Redirect } from 'react-router-dom';
+import 'babel-polyfill';
 
 import 'bootstrap';
 import '../public/scss/custom.scss';
@@ -39,10 +40,10 @@ ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <Switch>
-        <Route exact path="/" render={(props) => (
+        {/* <Route exact path="/" render={(props) => (
           <BoardListPage {...props} />
         )} />
-        <Route path="/board_create" render={(props) => (
+        <Route exact path="/board_create" render={(props) => (
           <BoardCreatePage {...props} />
         )} />
         <Route path="/board_view/:id" render={(props) => (
@@ -50,7 +51,12 @@ ReactDOM.render(
         )} />
         <Route path="/board_update/:id" render={(props) => (
           <BoardUpdatePage {...props} />
-        )} />
+        )} /> */}
+
+        <Route exact path="/" component={ BoardListPage } />
+        <Route exact path="/board_create" component={ BoardCreatePage } />
+        <Route path="/board_view/:id" component={ BoardViewPage } />
+        <Route path="/board_update/:id" component={ BoardUpdatePage } />
       </Switch>
     </BrowserRouter>
   </Provider>,

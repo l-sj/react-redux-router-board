@@ -8,9 +8,9 @@ import updateReducer from './updateReducer'
 const rootReducer = combineReducers({
   router,
   listData: listReducer,
-  createData: createReducer,
+  // createData: createReducer,
   viewData: viewReducer,
-  // updateData: updateReducer,
+  updateData: updateReducer,
 });
 
 export default rootReducer;

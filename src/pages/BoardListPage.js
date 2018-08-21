@@ -14,8 +14,8 @@ export default class BoardListPage extends Component {
 
   componentDidMount(){
     // 데이터 추가 전까지 임시
-    const viewItem_ID = 'viewItem_ID'
-    localStorage.setItem(viewItem_ID, 1)
+    // const viewItem_ID = 'viewItem_ID'
+    // localStorage.setItem(viewItem_ID, 1)
   }
 
   render() {

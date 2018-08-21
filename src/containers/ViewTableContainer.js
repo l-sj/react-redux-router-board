@@ -52,6 +52,7 @@ const mapDispatchToProps = (dispatch) => {
       })
     },
     viewCountUpdate: (id) => {
+      // 뷰페이지에서 새로고침으로 조회수 올라가지 않게
       const viewItem_ID = 'viewItem_ID'
       const storageID = localStorage.getItem(viewItem_ID);
 
