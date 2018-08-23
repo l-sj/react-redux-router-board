@@ -1,7 +1,8 @@
 import React, { Fragment, Component } from 'react';
 import { Link } from 'react-router-dom'
 
-import CreateTable from '../components/CreateTable'
+// import CreateTable from '../components/CreateTable'
+import CreateTableContainer from '../containers/CreateTableContainer'
 
 export default class BoardCreatePage extends Component {
   constructor(){
@@ -12,6 +13,10 @@ export default class BoardCreatePage extends Component {
     this.props.history.goBack();
   }
 
+  componentDidMount(){
+    console.log('didMount BoardCreatePage: ', this.props);
+  }
+
   render() {
     console.log('this.props.history: ', this.props.history);
     return (
@@ -20,7 +25,8 @@ export default class BoardCreatePage extends Component {
           <form>
             <fieldset>
               <legend>글쓰기</legend>
-              <CreateTable />
+              {/* <CreateTable /> */}
+              <CreateTableContainer />
             </fieldset>
           </form>
         </div>

@@ -19,7 +19,7 @@ export default class TableRow extends Component {
         <tr>
           <th scope="row" className="text-center">{ this.props.id }</th>
           <td>
-            <a href={''} onClick={ this.linkToViewPage.bind( this, this.props.id ) }>{ this.props.title }</a>
+            <a onClick={ this.linkToViewPage.bind( this, this.props.id ) }>{ this.props.title }</a>
             {/* <a href="#">{ this.props.title }</a> */}
           </td>
           <td className="text-center">{ this.props.user_name }</td>
