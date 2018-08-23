@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
 import axios from 'axios'
+import * as ajaxRequest from '../utils/ajaxRequest'
 // import dotenv from 'dotenv'
 // const { SERVER_HOST, SERVER_PORT } = dotenv.config().parsed;
 const SERVER_HOST = '127.0.0.1'
@@ -13,7 +14,7 @@ import {
 import ViewTable from '../components/ViewTable'
 
 const mapStateToProps = (state) => {
-  console.log( state.viewData );
+  console.log( 'state: ', state );
   return {
     viewData: state.viewData,
     router: state.router,
@@ -34,17 +35,17 @@ const mapDispatchToProps = (dispatch) => {
       
       axios.get(`http://${SERVER_HOST}:${SERVER_PORT}/api/board/${ id }`, {crossDomain: true, responseType: 'json', headers: {'Content-Type': 'application/json'}})
       .then( (result) => {
-        console.log( "Success" );
+        // console.log( "Success" );
         
         if( result.status === 200 ){
           dispatch({
             type: FETCH_VIEW_SUCCESS,
-            payload: result.data.response,
+            payload: result.data.response
           });
         }
       })
       .catch( (response) => {
-        console.log( "FAILED" );
+        // console.log( "FAILED" );
         dispatch({
           type: FETCH_VIEW_FAILED,
           payload: response
@@ -58,23 +59,31 @@ const mapDispatchToProps = (dispatch) => {
 
       if( storageID != id ){
         localStorage.setItem(viewItem_ID, id);
-        axios.put(`http://${SERVER_HOST}:${SERVER_PORT}/api/board/${ id }/count`, {crossDomain: true, responseType: 'json', headers: {'Content-Type': 'application/json'}}).
-        then(
+        axios.put(`http://${SERVER_HOST}:${SERVER_PORT}/api/board/${ id }/count`, {crossDomain: true, responseType: 'json', headers: {'Content-Type': 'application/json'}})
+        .then(
           (result) => {
-            console.log( 'UPDATE_COUNT_SUCCESS: ', result);
+            // console.log( 'UPDATE_COUNT_SUCCESS: ', result);
             dispatch({
               type: UPDATE_COUNT_SUCCESS,
+              payload: result
             });
           }
         ).catch(
           (response) => {
-            console.log( 'UPDATE_COUNT_FAILED: ', response);
+            // console.log( 'UPDATE_COUNT_FAILED: ', response);
             dispatch({
               type: UPDATE_COUNT_FAILED,
               payload: response
             })
           }
         )
+      }
+    },
+    boardDelete: async (id, router) => {
+      const result = await ajaxRequest.deleteBoard(id)
+      // console.log('router: ', router );
+      if(result.data.success){
+        router.history.push('/')
       }
     },
 

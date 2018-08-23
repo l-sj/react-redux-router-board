@@ -29,11 +29,11 @@ export default function (state = INITIAL_STATE, action) {
       return { ...state, loading: false, error: true }
 
     case UPDATE_COUNT_SUCCESS:
-      console.log('count update 성공-----------: ', state.view_count );
+      console.log('count update 성공-----------: ', action.payload );
     return { ...state }
 
     case UPDATE_COUNT_FAILED:
-    console.log('count update 실패', state.view_count );
+    console.log('count update 실패', action.payload );
       return { ...state, error: true }
 
     default:

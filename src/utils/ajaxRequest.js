@@ -4,7 +4,7 @@ const SERVER_PORT = '8800'
 
 
 export function getBoard (id) {
-  return axios.get( `http://${SERVER_HOST}:${SERVER_PORT}/api/board/${id}`,
+  return axios.get(`http://${SERVER_HOST}:${SERVER_PORT}/api/board/${id}`,
     {
       crossDomain: true,
       responseType: 'json',
@@ -18,7 +18,7 @@ export function getBoard (id) {
 }
 
 export function pushBoardUpdate (id, title, content) {
-  return axios.put( `http://${SERVER_HOST}:${SERVER_PORT}/api/board/${id}`,
+  return axios.put(`http://${SERVER_HOST}:${SERVER_PORT}/api/board/${id}`,
     { title, content },
     {
       responseType: 'json',
@@ -30,7 +30,7 @@ export function pushBoardUpdate (id, title, content) {
 }
 
 export function postBoardCreate (title, content, user_name) {
-  return axios.post( `http://${SERVER_HOST}:${SERVER_PORT}/api/board/`,
+  return axios.post(`http://${SERVER_HOST}:${SERVER_PORT}/api/board/`,
     { title, content, user_name },
     {
       responseType: 'json',
@@ -39,6 +39,10 @@ export function postBoardCreate (title, content, user_name) {
       }
     }
   )
+}
+
+export function deleteBoard (id) {
+  return axios.delete(`http://${SERVER_HOST}:${SERVER_PORT}/api/board/${id}`)
 }
 /*
 container 파일에서
