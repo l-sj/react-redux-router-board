@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 export default class UpdateTableButtons extends Component {
   constructor(props){
     super(props)
-    console.log('this.props.title: ', this.props);
+    // console.log('this.props.title: ', this.props);
     this.state = {
       title: '제목',
       content: '내용',
@@ -14,7 +14,7 @@ export default class UpdateTableButtons extends Component {
   // props 값으로 state 변경해줘야 하는 경우
   componentWillReceiveProps(nextProps){
     // this.props 는 아직 바뀌지 않은 상태
-    console.log('nextProps: ', nextProps);
+    // console.log('nextProps: ', nextProps);
     this.setState({
       title: nextProps.title,
       content: nextProps.content,
@@ -22,7 +22,7 @@ export default class UpdateTableButtons extends Component {
   }
 
   componentDidMount(){
-    console.log('UpdateTable componentDidMount: ', this.props);
+    // console.log('UpdateTable componentDidMount: ', this.props);
     this.props.fetchUpdateData( this.props.pageProps.match.params.id );
 
     // '취소' 버튼 누른 후 다시 '수정' 버튼을 누르고 접근. 그때는 componentWillReceiveProps 적용이 안되네...그래서 이렇게.
@@ -32,10 +32,6 @@ export default class UpdateTableButtons extends Component {
         content: this.props.content,
       })
     }
-  }
-
-  componentDidUpdate(){
-    console.log('UpdateTable componentDidUpdate. setState 하면 무한 루프 발생!');
   }
 
   // 입력되는 텍스트로 제목 변경
@@ -67,7 +63,7 @@ export default class UpdateTableButtons extends Component {
   }
 
   render () {
-    console.log( 'UpdateTable Render: ', this.props );
+    // console.log( 'UpdateTable Render: ', this.props );
 
     return (
       <Fragment>

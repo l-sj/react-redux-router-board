@@ -18,7 +18,8 @@ export function getBoard (id) {
 }
 
 export function pushBoardUpdate (id, title, content) {
-  return axios.put( `http://${SERVER_HOST}:${SERVER_PORT}/api/board/${id}`,{ title, content },
+  return axios.put( `http://${SERVER_HOST}:${SERVER_PORT}/api/board/${id}`,
+    { title, content },
     {
       responseType: 'json',
       headers: {
@@ -28,6 +29,17 @@ export function pushBoardUpdate (id, title, content) {
   )
 }
 
+export function postBoardCreate (title, content, user_name) {
+  return axios.post( `http://${SERVER_HOST}:${SERVER_PORT}/api/board/`,
+    { title, content, user_name },
+    {
+      responseType: 'json',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+  )
+}
 /*
 container 파일에서
 funcTemp = async (id) => {
