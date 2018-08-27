@@ -4,7 +4,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import mysql from 'mysql';
 import dotenv from 'dotenv';
-// body-parser: 클라이언트의 HTTP 요청 중 POST 요청의 바디 데이터에 접근하기 위한 모듈
+
 const app = express();
 const server = http.Server(app);
 
@@ -61,19 +61,32 @@ app.post('/api/board', (req, res) => {
 });
 
 app.get('/api/board', (req, res) => {
-  const page_num = req.query.page_num || 1;
-  const page_size = req.query.page_size || 10;
+  const page_num = Number(req.query.page_num) || 1;
+  const page_size = Number(req.query.page_size) || 10;
+  const search_condition = req.query.search_condition || '';
+  const search_value = req.query.search_value || '';
+  const ordering = req.query.ordering || 'created_at';
+  const sort = req.query.sort || 'DESC';
   const offset = (page_num - 1) * page_size;
+  console.log(req.query, '------page_num');
+  console.log(page_num, '------page_num');
   let sql = `
     SELECT id, title, content, user_name, view_count, FROM_UNIXTIME(UNIX_TIMESTAMP(created_at), "%Y-%m-%d %H:%i:%s") as created_at  
     FROM board
   `;
 
+
   let sql_total = `
-    SELECT count(*) as view_count 
+    SELECT count(*) as total_count 
     FROM board
-    Limit 1
   `;
+
+  if (search_value) {
+    sql += ` WHERE ${search_condition} like '%${search_value}%'`;
+    sql_total += ` WHERE ${search_condition} like '%${search_value}%'`;
+  }
+
+  sql += ` ORDER BY ${ordering} ${sort}`;
 
   if(page_num) {
     sql += ` LIMIT ${offset}, ${page_size}`;
@@ -81,6 +94,9 @@ app.get('/api/board', (req, res) => {
 
   const connection = getMySQLConnection();
   const formattedSql = mysql.format(sql);
+
+  console.log(sql);
+  console.log(sql_total);
 
   connection.connect((err) => {
     if (err) {
@@ -97,13 +113,15 @@ app.get('/api/board', (req, res) => {
           list: results,
           page_size,
           page_num,
-          totalCount: total_result[0].view_count
+          sort,
+          ordering,
+          search_condition,
+          search_value,
+          totalCount: total_result[0].total_count
         }});
         connection.end();
       });
     })
-
-
   });
 });
 

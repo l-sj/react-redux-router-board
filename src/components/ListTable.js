@@ -6,10 +6,16 @@ import LoaderSpinners from '../components/LoaderSpinners'
 
 export default class ListTable extends Component {
   componentDidMount(){
-    this.props.fetchListData();
+    console.log('ListTable: componentDidMount : ');
+    this.props.fetchListData( this.props.paramPageNum, this.props.paramPageSize );
+  }
+
+  componentDidUpdate(){
+    console.log('ListTable: componentDidUpdate : ');
   }
 
   render () {
+    console.log( 'ListTable Render: ', this.props);
     if(this.props.loading){
       return (
         <LoaderSpinners />
@@ -29,27 +35,6 @@ export default class ListTable extends Component {
           </thead>
           <tbody>
             {
-              // (function(self){
-              //   if ( self.props.list.length > 0) {
-              //     return (
-              //       <Fragment>
-              //         {
-              //           self.props.list.map( (row, index) => {
-              //             return (
-              //               // <TableRow { ...row } key={ index } linkToViewPage={ self.linkToViewPage } 와 같이 TableRow 컴포넌트에 있는 linkToViewPage 함수가 있는 이유는 무엇? />
-              //               <TableRow { ...row } key={ index } />
-              //             )
-              //           })
-              //         }
-              //       </Fragment>
-              //     )
-              //   } else {
-              //     return (
-              //       <TableRowNoData />
-              //     )
-              //   }
-              // })(this)
-
               (this.props.list.length > 0)? this.props.list.map( (row, index) => {
               return( <TableRow { ...row } key={ index } /> )
               }): <TableRowNoData />

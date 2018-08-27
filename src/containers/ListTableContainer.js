@@ -7,32 +7,65 @@ const SERVER_PORT = '8800'
 
 import { FETCH, FETCH_SUCCESS, FETCH_FAILED } from '../actions/listAction'
 import ListTable from '../components/ListTable'
+import * as ajaxRequest from '../utils/ajaxRequest'
 
 const mapStateToProps = (state) => {
   // console.log( state );
   return {
-    list: state.listData.list,
-    loading: state.listData.loading,
+    // list: state.listData.list,
+    // loading: state.listData.loading,
+    // page_num: state.listData.page_num,
+    // page_size: state.listData.page_size,
+    // totalCount: state.listData.totalCount,
+    ...state.listData
   }
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchListData: () => {
+    fetchListData: async ( paramPageNum, paramPageSize ) => {
       dispatch({
         type: FETCH
       });
+
+      try {
+        const result = await ajaxRequest.getBoardList(paramPageNum, paramPageSize);
+        // const { list, page_num, page_size, totalCount } = result.data.response;
+        // console.log('result.data.response.totalCount:-----', result.data.response.totalCount);
+        dispatch({
+          type: FETCH_SUCCESS,
+          payload: {
+            // list,
+            // page_num,
+            // page_size,
+            // totalCount,
+            ...result.data.response
+          } 
+        });
+      } catch(e) {
+        console.log( "error" );
+        console.log( e );
+        dispatch({
+          type: FETCH_FAILED,
+          payload: e,
+        });
+      }
       
-      console.log('----');
-      axios.get(`http://${SERVER_HOST}:${SERVER_PORT}/api/board/`, {crossDomain: true, responseType: 'json', headers: {'Content-Type': 'application/json'}})
+
+      /*
+      axios.get(`http://${SERVER_HOST}:${SERVER_PORT}/api/board/${param}`, {crossDomain: true, responseType: 'json', headers: {'Content-Type': 'application/json'}})
       .then( (result) => {
-        console.log( "Success" );
-        console.log( result );
-        
         if( result.status === 200 ){
-          console.log( result.data.response.list);
+          const { list, page_num, page_size, totalCount } = result.data.response;
+          console.log( "------------ListTableContainer Success------------" );
+          console.log( result.data.response );
           dispatch({
             type: FETCH_SUCCESS,
-            payload: result.data.response.list,
+            payload: {
+              list,
+              page_num,
+              page_size,
+              totalCount
+            } 
           });
         }
       })
@@ -44,6 +77,7 @@ const mapDispatchToProps = (dispatch) => {
           payload: response,
         });
       })
+      */
     }
   } 
 }

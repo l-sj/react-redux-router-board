@@ -1,8 +1,8 @@
-const dotenv = require('dotenv');
 const port = process.env.PORT || 3000;
 const publicPath = `http://localhost:${port}/`;
 const path = require('path');
 const webpack = require('webpack');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   entry: [
@@ -22,44 +22,50 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['es2015', 'react', 'stage-0']
+            presets: ['es2017', 'react', 'stage-0']
           }
         }
       },
       {
-        test: /\.(scss)$/,
+        test: /\.css$/,
         use: [
+          { loader: "style-loader" },
           {
-            // Adds CSS to the DOM by injecting a `<style>` tag
-            loader: 'style-loader'
-          },
-          {
-            // Interprets `@import` and `url()` like `import/require()` and will resolve them
-            loader: 'css-loader'
-          },
-          {
-            // Loader for webpack to process CSS with PostCSS
-            loader: 'postcss-loader',
+            loader: "css-loader",
             options: {
-              plugins: function () {
-                return [
-                  require('autoprefixer')
-                ];
-              }
+              modules: true,
+              importLoaders: 1,
+              localIdentName: '[name]__[local]__[hash:base64:5]',
             }
           },
-          {
-            // Loads a SASS/SCSS file and compiles it to CSS
-            loader: 'sass-loader'
+        ],
+      },
+      {
+        test: /\.(scss)$/,
+        use: [{
+          loader: 'style-loader', // inject CSS to page
+        }, {
+          loader: 'css-loader', // translates CSS into CommonJS modules
+        }, {
+          loader: 'postcss-loader', // Run post css actions
+          options: {
+            plugins: function () { // post css plugins, can be exported to postcss.config.js
+              return [
+                require('precss'),
+                require('autoprefixer')
+              ];
+            }
           }
-        ]
-      }
+        }, {
+          loader: 'sass-loader' // compiles Sass to CSS
+        }]
+      },
     ]
   },
 
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    // new Dotenv()
+    new Dotenv()
   ],
 
   devServer: {
