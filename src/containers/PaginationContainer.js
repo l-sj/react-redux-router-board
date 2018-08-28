@@ -7,6 +7,7 @@ const SERVER_PORT = '8800'
 
 import { FETCH, FETCH_SUCCESS, FETCH_FAILED } from '../actions/listAction'
 import Pagination from '../components/Pagination'
+import * as ajaxRequest from '../utils/ajaxRequest'
 
 const mapStateToProps = (state) => {
   // console.log( state );
@@ -17,39 +18,23 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     //
-    pushPagination: ( paramPageNum, paramPageSize, router ) => {
-      var param = '?';
-      (paramPageNum)? param += `page_num=${paramPageNum}&`: '';
-      (paramPageSize)? param += `page_size=${paramPageSize}&`: '';
-
-      console.log('mapDispatchToProps----------', param);
-      axios.get(`http://${SERVER_HOST}:${SERVER_PORT}/api/board/${param}`, {crossDomain: true, responseType: 'json', headers: {'Content-Type': 'application/json'}})
-      .then((result) => {
-        if( result.status === 200 ){
-          const { list, page_num, page_size, totalCount } = result.data.response;
-          console.log('list, page_num, page_size, totalCount: ', result.data.response);
-          //
-          dispatch({
-            type: FETCH_SUCCESS,
-            payload: {
-              list,
-              page_num: paramPageNum,
-              page_size: paramPageSize,
-              totalCount,
-            }
-          })
-          //
-          router.history.push(`/${param}`)
-        }
-      })
-      .catch((response) => {
+    pushPagination: async ({ page_num, page_size, router }) => {
+      try {
+        const result = await ajaxRequest.getBoardList({ page_num, page_size, router })
+        dispatch({
+          type: FETCH_SUCCESS,
+          payload: {
+            ...result.data.response
+          }
+        })
+      } catch(e) {
         console.log( "error" );
-        console.log( response );
+        console.log( e );
         dispatch({
           type: FETCH_FAILED,
-          payload: response,
+          payload: e,
         });
-      })
+      }
     }
   } 
 }

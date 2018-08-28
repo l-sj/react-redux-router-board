@@ -26,8 +26,8 @@ export default class BoardListPage extends Component {
     console.log( 'BoardListPage Render: ', this.props );
     // var tttt = JSON.parse(this.props.history.location.search)
     let listParse = queryString.parse( this.props.history.location.search );
-    let page_num = Number(listParse.page_num) || 1;
-    let page_size = Number(listParse.page_size) || 10;
+    let page_num = Number(listParse.pageNum);
+    let page_size = Number(listParse.pageSize);
     return (
       <Fragment>
         <div id="board_list">

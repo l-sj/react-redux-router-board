@@ -2,15 +2,17 @@ import axios from 'axios'
 const SERVER_HOST = '127.0.0.1'
 const SERVER_PORT = '8800'
 
-export function getBoardList({ paramPageNum, paramPageSize, ordering, sort, search_condition, search_value, router }) {
+export function getBoardList({ page_num, page_size, ordering, sort, search_condition, search_value, router }) {
   var param = '?';
-      (paramPageNum)? param += `page_num=${paramPageNum}&`: '';
-      (paramPageSize)? param += `page_size=${paramPageSize}&`: '';
       
   if ( router != undefined ) {
+    (page_num)? param += `pageNum=${page_num}&`: '';
+    (page_size)? param += `pageSize=${page_size}&`: '';
     router.history.push(`/${param}`)
   }
 
+  (page_num)? param += `page_num=${page_num}&`: '';
+  (page_size)? param += `page_size=${page_size}&`: '';
   (ordering)? param += `ordering=${ordering}&`: '';
   (sort)? param += `sort=${sort}&`: '';
   (search_condition)? param += `search_condition=${search_condition}&`: '';
