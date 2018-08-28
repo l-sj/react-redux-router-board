@@ -25,7 +25,7 @@ const mapDispatchToProps = (dispatch) => {
       (paramPageNum)? param += `page_num=${paramPageNum}&`: '';
       (paramPageSize)? param += `page_size=${paramPageSize}&`: '';
 
-console.log('pageNumpageNumpageNum----------', param);
+      console.log('mapDispatchToProps----------', param);
       axios.get(`http://${SERVER_HOST}:${SERVER_PORT}/api/board/${param}`, {crossDomain: true, responseType: 'json', headers: {'Content-Type': 'application/json'}})
       .then((result) => {
         if( result.status === 200 ){

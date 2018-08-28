@@ -2,11 +2,19 @@ import axios from 'axios'
 const SERVER_HOST = '127.0.0.1'
 const SERVER_PORT = '8800'
 
-export function getBoardList(paramPageNum, paramPageSize) {
+export function getBoardList({ paramPageNum, paramPageSize, ordering, sort, search_condition, search_value, router }) {
   var param = '?';
       (paramPageNum)? param += `page_num=${paramPageNum}&`: '';
       (paramPageSize)? param += `page_size=${paramPageSize}&`: '';
+      
+  if ( router != undefined ) {
+    router.history.push(`/${param}`)
+  }
 
+  (ordering)? param += `ordering=${ordering}&`: '';
+  (sort)? param += `sort=${sort}&`: '';
+  (search_condition)? param += `search_condition=${search_condition}&`: '';
+  (search_value)? param += `search_value=${search_value}&`: '';
   return axios.get(`http://${SERVER_HOST}:${SERVER_PORT}/api/board/${param}`, 
     {
       crossDomain: true, 

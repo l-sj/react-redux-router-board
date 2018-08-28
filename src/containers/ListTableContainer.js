@@ -22,22 +22,18 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchListData: async ( paramPageNum, paramPageSize ) => {
+    fetchListData: async ({ paramPageNum, paramPageSize, ordering, sort, search_condition, search_value, router }) => {
       dispatch({
         type: FETCH
       });
 
       try {
-        const result = await ajaxRequest.getBoardList(paramPageNum, paramPageSize);
+        const result = await ajaxRequest.getBoardList({ paramPageNum, paramPageSize, ordering, sort, search_condition, search_value, router });
         // const { list, page_num, page_size, totalCount } = result.data.response;
         // console.log('result.data.response.totalCount:-----', result.data.response.totalCount);
         dispatch({
           type: FETCH_SUCCESS,
           payload: {
-            // list,
-            // page_num,
-            // page_size,
-            // totalCount,
             ...result.data.response
           } 
         });
