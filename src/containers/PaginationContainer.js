@@ -11,10 +11,7 @@ import Pagination from '../components/Pagination'
 const mapStateToProps = (state) => {
   // console.log( state );
   return {
-    list: state.listData.list,
-    page_num: state.listData.page_num,
-    page_size: state.listData.page_size,
-    totalCount: state.listData.totalCount,
+    ...state.listData
   }
 }
 const mapDispatchToProps = (dispatch) => {
@@ -30,7 +27,7 @@ const mapDispatchToProps = (dispatch) => {
       .then((result) => {
         if( result.status === 200 ){
           const { list, page_num, page_size, totalCount } = result.data.response;
-          console.log('list, page_num, page_size, totalCount: ', list, page_num, page_size, totalCount);
+          console.log('list, page_num, page_size, totalCount: ', result.data.response);
           //
           dispatch({
             type: FETCH_SUCCESS,
@@ -38,7 +35,7 @@ const mapDispatchToProps = (dispatch) => {
               list,
               page_num: paramPageNum,
               page_size: paramPageSize,
-              totalCount
+              totalCount,
             }
           })
           //

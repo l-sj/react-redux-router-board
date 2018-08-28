@@ -93,13 +93,13 @@ export default class Pagination extends Component {
 
   getPaginationValue(){
     // 업데이트가 이뤄질때마다 새롭게 재정의
-    let total_count = this.props.totalCount,
-        page_list_length = this.props.page_size,
-        current_page_num = this.props.page_num,
+    let total_count = Number(this.props.totalCount),
+        page_list_length = Number(this.props.page_size),
+        current_page_num = Number(this.props.page_num),
         current_block_num = null, 
         current_block_firstNum = null, 
         current_block_lastNum = null,
-        block_page_length = 3,
+        block_page_length = Number(this.props.blockCountPerPage),
         block_length = null,
         first_block = 1,
         last_block = null,
@@ -193,7 +193,7 @@ export default class Pagination extends Component {
   pageButtons(){
     let { current_page_num, current_block_firstNum, current_block_lastNum } = this.getPaginationValue();
     let pageButtons = [];
-
+console.log('pageButtons: ', current_block_firstNum, current_block_lastNum);
     for( var i = current_block_firstNum; i <= current_block_lastNum ; i++ ){
       pageButtons.push(
         <li key={ i } className={ `page-item ${(i === current_page_num)? 'active' : ''}` }>

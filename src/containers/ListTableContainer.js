@@ -22,7 +22,7 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchListData: async ({ paramPageNum, paramPageSize, ordering, sort, search_condition, search_value, router }) => {
+    fetchListData: async ({ paramPageNum, paramPageSize, ordering, sort, search_condition, search_value, router, blockCountPerPage }) => {
       dispatch({
         type: FETCH
       });
@@ -30,11 +30,13 @@ const mapDispatchToProps = (dispatch) => {
       try {
         const result = await ajaxRequest.getBoardList({ paramPageNum, paramPageSize, ordering, sort, search_condition, search_value, router });
         // const { list, page_num, page_size, totalCount } = result.data.response;
-        // console.log('result.data.response.totalCount:-----', result.data.response.totalCount);
+        console.log('result.data.response.totalCount:-----', result.data.response);
+        console.log('result.data.response.totalCount:-----', blockCountPerPage);
         dispatch({
           type: FETCH_SUCCESS,
           payload: {
-            ...result.data.response
+            ...result.data.response,
+            blockCountPerPage
           } 
         });
       } catch(e) {

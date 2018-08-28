@@ -7,6 +7,7 @@ const INITIAL_STATE = {
   totalCount: null,
   loading: false,
   error: false,
+  blockCountPerPage: 5,
 }
 
 export default function (state = INITIAL_STATE, action) {

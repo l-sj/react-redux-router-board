@@ -68,8 +68,10 @@ app.get('/api/board', (req, res) => {
   const ordering = req.query.ordering || 'created_at';
   const sort = req.query.sort || 'DESC';
   const offset = (page_num - 1) * page_size;
-  console.log(req.query, '------page_num');
+  console.log(req.query, '------query');
   console.log(page_num, '------page_num');
+  console.log(search_condition, '------search_condition');
+  console.log(search_value, '------search_value');
   let sql = `
     SELECT id, title, content, user_name, view_count, FROM_UNIXTIME(UNIX_TIMESTAMP(created_at), "%Y-%m-%d %H:%i:%s") as created_at  
     FROM board
@@ -81,7 +83,7 @@ app.get('/api/board', (req, res) => {
     FROM board
   `;
 
-  if (search_value) {
+  if (search_value && search_condition) {
     sql += ` WHERE ${search_condition} like '%${search_value}%'`;
     sql_total += ` WHERE ${search_condition} like '%${search_value}%'`;
   }
